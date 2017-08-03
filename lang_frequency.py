@@ -17,7 +17,7 @@ def get_most_frequent_words(text):
             wds_frq[word] += 1
         else:
             wds_frq[word] = 1
-    return [(k, wds_frq[k]) for k in sorted(
+    return [(key, wds_frq[key]) for key in sorted(
                                             wds_frq,
                                             key=wds_frq.get,
                                             reverse=True
