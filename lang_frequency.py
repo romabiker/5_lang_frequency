@@ -1,12 +1,33 @@
+import os
+import re
+import sys
 
 
 def load_data(filepath):
-    pass
+    if not os.path.exists(filepath):
+        return None
+    with open(filepath, 'r') as file_handler:
+        return file_handler.read()
 
 
 def get_most_frequent_words(text):
-    pass
+    wds_frq = {}
+    for word in re.findall(r'\w+', text):
+        if word in wds_frq:
+            wds_frq[word] += 1
+        else:
+            wds_frq[word] = 1
+    return [(k, wds_frq[k]) for k in sorted(
+                                            wds_frq,
+                                            key=wds_frq.get,
+                                            reverse=True
+                                            )]
 
 
 if __name__ == '__main__':
-    pass
+    if len(sys.argv) > 1:
+        filepath = sys.argv[1]
+        text = load_data(filepath)
+        print(get_most_frequent_words(text)[:10])
+    else:
+        print('\nEnter: python3 lang_frequency.py "filepath"\n')
