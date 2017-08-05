@@ -20,11 +20,10 @@ def get_most_frequent_words(text, quantity=10):
 
 
 if __name__ == '__main__':
-    if len(sys.argv) > 1:
-        filepath = sys.argv[1]
-        text = load_data(filepath)
-        if not text:
-            print('filepath does not exist')
-        print(get_most_frequent_words(text))
-    else:
+    if not len(sys.argv) > 1:
         print('\nEnter: python3 lang_frequency.py "filepath"\n')
+    filepath = sys.argv[1]
+    text = load_data(filepath)
+    if not text:
+        print('filepath does not exist')
+    print(get_most_frequent_words(text))
